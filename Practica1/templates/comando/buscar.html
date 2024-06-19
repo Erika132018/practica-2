@@ -1,0 +1,39 @@
+{% extends "template.html" %}
+{% block content %}
+
+<h2 class="text-white">Lista de Comandos</h2>
+<div class="booking-form-body">
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="/comando/ver" class="btn btn-danger">AGREGAR</a>
+        <form id="buscar-form" method="post" action="/comando/buscar" class="d-flex align-items-center">
+            <input name="parametro" type="text" class="form-control me-2" placeholder="Buscar comando" required>
+            <select name="tipo_busqueda" class="form-select me-2" required>
+                <option value="lineal">Búsqueda secuencial</option>
+                <option value="binaria">Búsqueda Binaria</option>
+            </select>
+            <button class="btn btn-warning" type="submit">BUSCAR</button>
+        </form>
+    </div>
+    {% if not_found %}
+    <div class="alert alert-danger mt-3" role="alert">
+        El comando '{{ not_found }}' no existe en la lista.
+    </div>
+    {% endif %}
+    <table id="tabla" class="table text-white mt-3">
+        <thead>
+            <tr>
+                <th>Comando</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comando in lista %}
+            <tr>
+                <td>{{ comando }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,46 @@
+{% extends "template.html" %}
+{% block content %}
+<h2 class="text-white">Lista de Comandos</h2>
+<div class="booking-form-body">
+    <div class="d-flex justify-content-between align-items-center">
+        <a href="/comando/ver" class="btn btn-danger">AGREGAR</a>
+        <form id="ordenar-form" method="post" action="/comando">
+            <div class="d-flex align-items-center">
+                <div class="me-2">
+                    <select name="campo" class="form-select" aria-label="Opciones de ordenamiento" required>
+                        <option value="comando">Comando</option>
+                    </select>
+                </div>
+                <div class="me-2">
+                    <select name="direccion" class="form-select" aria-label="Opciones de ordenamiento" required>
+                        <option value="1">Ascendente</option>
+                        <option value="2">Descendente</option>
+                    </select>
+                </div>
+                <div class="me-2">
+                    <select name="algoritmo" class="form-select" aria-label="Opciones de algoritmo" required>
+                        <option value="2">MergeSort</option>
+                        <option value="1">QuickSort</option>
+                        <option value="0">ShellSort</option>
+                    </select>
+                </div>
+                <button class="btn btn-warning" type="submit">ORDENAR</button>
+            </div>
+        </form>
+    </div>
+    <table id="tabla" class="table text-white mt-3">
+        <thead>
+            <tr>
+                <th>Comando</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comando in lista %}
+            <tr>
+                <td>{{ comando }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
